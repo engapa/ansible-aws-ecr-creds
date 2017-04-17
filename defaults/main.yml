@@ -1,0 +1,5 @@
+---
+image_name: pottava/amazon-ecr-credential-helper
+image_version: latest
+aws_directory: $HOME/.aws
+docker_directory: $HOME/.docker
