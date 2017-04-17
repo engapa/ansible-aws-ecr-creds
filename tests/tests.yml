@@ -1,0 +1,3 @@
+- hosts: myhost
+  roles:
+  - { role: aws-ecr-creds }
