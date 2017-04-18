@@ -1,6 +1,5 @@
 ---
 
-
 - name: ECR Login script
   template:
     src: docker-credential-ecr-login.j2
@@ -18,6 +17,12 @@
     dest: {{ docker_directory }}
   notify: 
    - restart docker
+
+- name: Ensure docker daemon is running
+  service:
+    name: docker
+    state: started
+    enabled: yes
 
 - name: Pull docker image
   docker_image:
