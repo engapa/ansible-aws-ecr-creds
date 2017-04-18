@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  author: Enrique Garcia Pablos
+  description: Ansible role for automatic login against AWS ECR
+  license: license (GPLv2, Apache)
+  min_ansible_version: 2.1
+  - name: Fedora
+    versions:
+    - all
+  galaxy_tags:
+    - ecr
+    - aws
+    - docker-credentials-ecr-helper
+  categories:
+  - cloud:ecr
+dependencies: []
+  
