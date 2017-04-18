@@ -1,0 +1,24 @@
+---
+
+
+- name: ECR Login script
+  template:
+    src: docker-credential-ecr-login.j2
+    dest: /usr/bin/docker-credential-ecr-login
+    mode: 0755
+
+- name: Ensure Docker directory
+  file:
+    path: {{ docker_directory }}
+    state: directory
+
+- name: Docker config
+  copy:
+    src: config.json
+    dest: {{ docker_directory }}
+  notify: 
+   - restart docker
+
+- name: Pull docker image
+  docker_image:
+    name: {{ image_name }}:{{ image_version}}
