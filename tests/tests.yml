@@ -1,3 +1,6 @@
 - hosts: myhost
   roles:
-  - { role: aws-ecr-creds }
+  - role: aws-ecr-creds
+    aws_ecr_registry: myregistry.dkr.ecr.region.amazonaws.com
+    aws_access_key_id: 12345
+    aws_secret_access_key: 678910
