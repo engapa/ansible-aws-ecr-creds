@@ -4,6 +4,7 @@ galaxy_info:
   description: Ansible role for automatic login against AWS ECR
   license: license (GPLv2, Apache)
   min_ansible_version: 2.1
+  platforms:
   - name: Fedora
     versions:
     - all
