@@ -2,6 +2,11 @@ ansible-aws-cred-helper
 =======================
 An ansible role to configure aws ecr credential helper
 
+Based on :
+
+ - https://github.com/awslabs/amazon-ecr-credential-helper
+ - https://hub.docker.com/r/pottava/amazon-ecr-credential-helper/
+
 Requirements
 ------------
 
@@ -10,28 +15,25 @@ Any pre-requisites that may not be covered by Ansible itself or the role should 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
-
-Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+- image_name: pottava/amazon-ecr-credential-helper (image container)
+- image_version: docker image version (latest)
+- aws_creds_type: source of aws credentials (one of env or file)
+- aws_directory: local aws directory ($HOME/.aws)
+- docker_directory: local docker directory ($HOME/.docker)
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+Here you are an example
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
-
-License
--------
-
-BSD
+      - role: ansible-aws-ecr-creds
+        aws_ecr_registry: probando.dkr.ecr.eu-west-1.amazonaws.com
+        aws_access_key_id: 12345623412321
+        aws_secret_access_key: 67891011123654
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+engapa@gmail.com
