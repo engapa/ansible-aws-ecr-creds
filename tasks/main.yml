@@ -1,8 +1,22 @@
 ---
 
+- name: Ensure AWS directory
+  file:
+    path: {{ aws_directory }}
+    state: directory
+  when:
+  - aws_creds_type == file
+
+- name: Generate AWS cred files
+  template:
+    src: "aws_credentials.j2"
+    dest: {{ aws_directory }}
+  when:
+  - aws_creds_type == file
+
 - name: ECR Login script
   template:
-    src: docker-credential-ecr-login.j2
+    src: "docker-credential-ecr-login.{{ aws_creds_type }}.j2"
     dest: /usr/bin/docker-credential-ecr-login
     mode: 0755
 
@@ -16,7 +30,7 @@
     src: config.json
     dest: {{ docker_directory }}
   notify: 
-   - restart docker
+  - restart docker
 
 - name: Ensure docker daemon is running
   service:
