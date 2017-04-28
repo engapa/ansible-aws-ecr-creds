@@ -29,15 +29,3 @@
   copy:
     src: config.json
     dest: {{ docker_directory }}
-  notify: 
-  - restart docker
-
-- name: Ensure docker daemon is running
-  service:
-    name: docker
-    state: started
-    enabled: yes
-
-- name: Pull docker image
-  docker_image:
-    name: {{ image_name }}:{{ image_version}}
