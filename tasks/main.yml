@@ -2,17 +2,17 @@
 
 - name: Ensure AWS directory
   file:
-    path: {{ aws_directory }}
+    path: "{{ aws_directory }}"
     state: directory
   when:
-  - aws_creds_type == file
+  - aws_creds_type == 'file'
 
 - name: Generate AWS cred files
   template:
     src: "aws_credentials.j2"
-    dest: {{ aws_directory }}
+    dest: "{{ aws_directory }}"
   when:
-  - aws_creds_type == file
+  - aws_creds_type == 'file'
 
 - name: ECR Login script
   template:
@@ -22,10 +22,10 @@
 
 - name: Ensure Docker directory
   file:
-    path: {{ docker_directory }}
+    path: "{{ docker_directory }}"
     state: directory
 
 - name: Docker config
   copy:
     src: config.json
-    dest: {{ docker_directory }}
+    dest: "{{ docker_directory }}"
